@@ -1,10 +1,8 @@
-<p id="notice"><%= notice %></p>
-
-<h1><%= User.find(params[:id]).firstname%> <%= User.find(params[:id]).lastname %></h1>
-  <p>E-mail: <%= User.find(params[:id]).email %></p>
-  <p>Created at: <%= User.find(params[:id]).created_at %></p>
-  <p>Updated at: <%= User.find(params[:id]).updated_at %></p>
-  <p>Admin: <%= User.find(params[:id]).admin %></p>
+<h1><%= @admin_user.firstname%> <%=  @admin_user.lastname %></h1>
+  <p>E-mail: <%=  @admin_user.email %></p>
+  <p>Created at: <%= @admin_user.created_at %></p>
+  <p>Updated at: <%= @admin_user.updated_at %></p>
+  <p>Admin: <%= @admin_user.admin %></p>
 
 
 

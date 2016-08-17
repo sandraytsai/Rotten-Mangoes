@@ -12,6 +12,7 @@ class Admin::UsersController < ApplicationController
   # GET /admin/users/1
   # GET /admin/users/1.json
   def show
+    @admin_user = User.find(params[:id])
   end
 
   # GET /admin/users/new
@@ -21,6 +22,7 @@ class Admin::UsersController < ApplicationController
 
   # GET /admin/users/1/edit
   def edit
+    @admin_user = User.find(params[:id])
   end
 
   # POST /admin/users
@@ -30,7 +32,7 @@ class Admin::UsersController < ApplicationController
 
     respond_to do |format|
       if @admin_user.save
-        format.html { redirect_to @admin_user, notice: 'User was successfully created.' }
+        format.html { redirect_to [:admin, @admin_user], notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @admin_user }
       else
         format.html { render :new }
@@ -42,20 +44,19 @@ class Admin::UsersController < ApplicationController
   # PATCH/PUT /admin/users/1
   # PATCH/PUT /admin/users/1.json
   def update
-    respond_to do |format|
-      if @admin_user.update(admin_user_params)
-        format.html { redirect_to @admin_user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @admin_user }
-      else
-        format.html { render :edit }
-        format.json { render json: @admin_user.errors, status: :unprocessable_entity }
-      end
+    @admin_user = User.find(params[:id])
+
+    if @admin_user.update(admin_user_params)
+      redirect_to [:admin, @admin_user], notice: 'User was successfully updated.'
+    else
+      render :edit
     end
   end
 
   # DELETE /admin/users/1
   # DELETE /admin/users/1.json
   def destroy
+    @admin_user = User.find(params[:id])
     @admin_user.destroy
     respond_to do |format|
       format.html { redirect_to admin_users_url, notice: 'User was successfully destroyed.' }
@@ -71,6 +72,6 @@ class Admin::UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_user_params
-      params.fetch(:admin_user, {})
+      params.require(:user).permit(:email, :firstname, :lastname, :password, :password_confirmation, :admin)
     end
 end

@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def check_login
     unless @user = User.find_by(id: session[:user_id])
       flash[:notice] = "You must be logged in"
-      redirect_to login_path
+      redirect_to new_session_path
     end
   end
 
@@ -23,8 +23,6 @@ class ApplicationController < ActionController::Base
       redirect_to new_session_path
     end
   end
-
-
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
