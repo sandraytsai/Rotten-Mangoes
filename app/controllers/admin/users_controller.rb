@@ -29,7 +29,6 @@ class Admin::UsersController < ApplicationController
   # POST /admin/users.json
   def create
     @admin_user = User.new(admin_user_params)
-
     respond_to do |format|
       if @admin_user.save
         format.html { redirect_to [:admin, @admin_user], notice: 'User was successfully created.' }
@@ -44,8 +43,6 @@ class Admin::UsersController < ApplicationController
   # PATCH/PUT /admin/users/1
   # PATCH/PUT /admin/users/1.json
   def update
-    @admin_user = User.find(params[:id])
-
     if @admin_user.update(admin_user_params)
       redirect_to [:admin, @admin_user], notice: 'User was successfully updated.'
     else
@@ -56,7 +53,6 @@ class Admin::UsersController < ApplicationController
   # DELETE /admin/users/1
   # DELETE /admin/users/1.json
   def destroy
-    @admin_user = User.find(params[:id])
     @admin_user.destroy
     respond_to do |format|
       format.html { redirect_to admin_users_url, notice: 'User was successfully destroyed.' }
