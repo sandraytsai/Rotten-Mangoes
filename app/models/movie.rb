@@ -18,6 +18,26 @@ class Movie < ApplicationRecord
     end
   end 
 
+  def self.find_title(title)
+    where("title like ?", "%#{title}%")
+  end
+
+  def self.find_director(director)
+    where("director like ?", "%#{director}%")
+  end
+
+  def self.duration_less_than_90 
+    where("runtime_in_minutes < ?", 90) 
+  end
+
+  def self.duration_90_to_120
+    where("runtime_in_minutes in (?)", 90..120)
+  end
+
+  def self.duration_more_than_120
+    where("runtime_in_minutes > ?", 120)
+  end
+
   protected
 
   def release_date_is_in_the_past
