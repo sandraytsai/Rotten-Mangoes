@@ -18,13 +18,10 @@ class Movie < ApplicationRecord
     end
   end 
 
-  def self.find_title(title)
-    where("title like ?", "%#{title}%")
-  end
+  def self.search(title, director)
+    where("title like ? or director like ?", "%#{title}%", "%#{director}%")
+  end 
 
-  def self.find_director(director)
-    where("director like ?", "%#{director}%")
-  end
 
   def self.duration_less_than_90 
     where("runtime_in_minutes < ?", 90) 

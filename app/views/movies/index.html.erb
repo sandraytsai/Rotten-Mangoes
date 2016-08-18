@@ -5,16 +5,12 @@
 <h2>Search for Movie:</h2>
 <%= form_tag("/", method: "get") do %>
   <div>
-    <%= label_tag(:title, "Title:") %>
-    <%= text_field_tag(:title) %>
-  </div>
-  <div>
-    <%= label_tag(:director, "Director:") %>
-    <%= text_field_tag(:director) %>
+    <%= label_tag(:search) %>
+    <%= text_field_tag(:search) %>
   </div>
   <div>
     <%= label_tag(:duration, "Duration") %>
-    <%= select_tag(:duration, options_for_select([["Under 90 minutes", 1], ["Between 90 and 120 minutes", 2], ["Over 120 minutes", 3]])) %>
+    <%= select_tag(:duration, options_for_select([["Under 90 minutes", 1], ["Between 90 and 120 minutes", 2], ["Over 120 minutes", 3]]), include_blank: true) %>
   </div>
   <div>
     <%= button_tag "Clear", type: :reset %>
@@ -24,3 +20,5 @@
 <hr>
 
 <%= render @movies %> 
+
+
