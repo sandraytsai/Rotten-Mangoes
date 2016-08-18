@@ -55,6 +55,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     @admin_user.destroy
     respond_to do |format|
+      UserMailer.account_deleted_email(@admin_user).deliver_now
       format.html { redirect_to admin_users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
