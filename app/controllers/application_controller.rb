@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_admin
-    unless @user && @user.admin?
+    unless current_user && current_user.admin?
       flash[:notice] = "You must be an admin!"
       redirect_to new_sessions_path
     end
@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end 
 
-  helper_method :current_user
+  def is_impersonating?
+    !!session[:admin_id]
+  end 
+
+  helper_method :current_user, :is_impersonating?
 
 end

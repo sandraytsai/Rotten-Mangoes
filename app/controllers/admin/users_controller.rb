@@ -1,7 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :check_login
-  before_filter :check_admin
-  before_action :set_admin_user, only: [:show, :edit, :update, :destroy]
+  before_action :check_login, :check_admin, :set_admin_user, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/users
   # GET /admin/users.json
@@ -60,6 +58,18 @@ class Admin::UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def impersonate
+    session[:admin_id] = current_user.id
+    session[:user_id] = params[:id]
+    redirect_to '/'
+  end
+
+  def unimpersonate
+    session[:user_id] = session[:admin_id]
+    session.delete(:admin_id)
+    redirect_to '/'
+  end 
 
   private
     # Use callbacks to share common setup or constraints between actions.

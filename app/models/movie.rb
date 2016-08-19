@@ -35,6 +35,7 @@ class Movie < ApplicationRecord
     where("runtime_in_minutes > ?", 120)
   end
 
+
   protected
 
   def release_date_is_in_the_past

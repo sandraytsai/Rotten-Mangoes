@@ -7,7 +7,9 @@
     <% end %>
     <% if current_user && current_user.admin? %>
       | <%= link_to "Admin page", admin_users_path %>
-    <% else %>
+    <% end %>
+    <% if is_impersonating? %>
+      | <%= link_to "Switch Back to Admin", unimpersonate_admin_users_path, method: :put %> 
     <% end %>
   </small>
 </footer>
