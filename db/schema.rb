@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20160816213547) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "admin_users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -35,8 +38,8 @@ ActiveRecord::Schema.define(version: 20160816213547) do
     t.integer  "rating_out_of_ten"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-    t.index ["movie_id"], name: "index_reviews_on_movie_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.index ["movie_id"], name: "index_reviews_on_movie_id", using: :btree
+    t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,4 +52,6 @@ ActiveRecord::Schema.define(version: 20160816213547) do
     t.boolean  "admin",           default: false
   end
 
+  add_foreign_key "reviews", "movies"
+  add_foreign_key "reviews", "users"
 end
