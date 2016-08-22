@@ -1,0 +1,27 @@
+<div class="row" style="padding: 0em 5em 1em 5em">
+  <div class="col-xs-4">
+    <%= link_to image_tag("http://i.imgur.com/Ji6xygF.png", width: 300, height: 70), :root %>
+  </div>
+  <div class="col-xs-8", style="margin-top: 1.4em">
+    <ul class="nav nav-pills pull-right">
+      <li role="presentation" class="active"><%= link_to "Home", "/" %></li>
+    <% if current_user %>
+      <li role="presentation" class="active"><%= link_to "Submit Movie", new_movie_path %></li>
+      <li role="presentation" class="active"><%= link_to "Log out", sessions_path("current"), method: :delete %></li>
+    <% else %>
+      <li role="presentation" class="active"><%= link_to "Log In", new_sessions_path %></li>
+      <li role="presentation" class="active"><%= link_to "Sign Up", new_user_path %></li>
+    <% end %> 
+    <% if current_user && current_user.admin? %>
+      <li role="presentation" class="active"><%= link_to "Admin page", admin_users_path %></li>
+    <% end %> 
+    <% if is_impersonating? %>
+      <li role="presentation" class="active"><%= link_to "Switch Back to Admin", unimpersonate_admin_users_path, method: :put %></li>
+    <% end %>
+    </ul>
+  </div>
+</div>
+
+
+
+

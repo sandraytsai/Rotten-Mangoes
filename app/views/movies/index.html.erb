@@ -1,24 +1,25 @@
-<h1>Rotten Mangoes</h1>
-<%= link_to "Submit a movie!", new_movie_path %>
-<hr>
+<div class="row" style="background-color: #fcf3e2">
+  <div class="col-xs-12" style="padding: 3em 15em 3em 15em">
+    <h2>Search For Movies</h2>
+    <%= form_tag("/", method: "get") do %>
+      <div>
+        <%= label_tag :search, "" %>
+        <%= text_field_tag :search, "", placeholder: "Title/Director", class: 'form-control' %>
+      </div>
+      <div>
+        <%= label_tag :duration, "Duration" %>
+        <%= select_tag :duration, options_for_select([["Under 90 minutes", 1], ["Between 90 and 120 minutes", 2], ["Over 120 minutes", 3]]), include_blank: true, class: 'form-control'%>
+      </div>
+      <div style="margin-top: 1em">
+        <%= button_tag "Clear", type: :reset, class: "btn btn-default" %>
+        <%= submit_tag "Search", class: "btn btn-default" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="row" style="padding-top: 1.5em">
+  <%= render @movies %> 
+</div>
 
-<h2>Search for Movie:</h2>
-<%= form_tag("/", method: "get") do %>
-  <div>
-    <%= label_tag(:search) %>
-    <%= text_field_tag(:search) %>
-  </div>
-  <div>
-    <%= label_tag(:duration, "Duration") %>
-    <%= select_tag(:duration, options_for_select([["Under 90 minutes", 1], ["Between 90 and 120 minutes", 2], ["Over 120 minutes", 3]]), include_blank: true) %>
-  </div>
-  <div>
-    <%= button_tag "Clear", type: :reset %>
-    <%= submit_tag("Search") %>
-  </div>
-<% end %>
-<hr>
-
-<%= render @movies %> 
 
 

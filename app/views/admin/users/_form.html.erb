@@ -1,39 +1,52 @@
-<%= form_for [:admin, @admin_user] do |f| %>
- <% if @admin_user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@admin_user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% @admin_user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div style="padding-left: 10em; padding-right: 10em ">
+  <%= form_for [:admin, @admin_user] do |f| %>
+   <% if @admin_user.errors.any? %>
+      <div class="row" id="error_explanation">
+        <div class="col-xs-12">
+          <h2><%= pluralize(@admin_user.errors.count, "error") %> prohibited this user from being saved:</h2>
+          <ul>
+          <% @admin_user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+  <div class="row" style="padding-bottom: 1em">
+    <div class="col-xs-6">
+      <%= f.label :firstname, "First Name"%>
+      <%= f.text_field :firstname, class: "form-control" %>
     </div>
-  <% end %>
-  <div>
-    <%= f.label :firstname, "First name"%>
-    <%= f.text_field :firstname %>
+    <div class="col-xs-6">
+      <%= f.label :lastname, "Last Name" %>
+      <%= f.text_field :lastname, class: "form-control" %>
+    </div>
   </div>
-  <div>
-    <%= f.label :lastname, "Last name" %>
-    <%= f.text_field :lastname %>
+  <div class="row" style="padding-bottom: 1em">
+    <div class="col-sx-12">
+      <%= f.label :email, "E-mail" %>
+      <%= f.text_field :email, class: "form-control" %>
+    </div>
   </div>
-  <div>
-    <%= f.label :email, "E-mail" %>
-    <%= f.text_field :email %>
+  <div class="row" style="padding-bottom: 1em">
+    <div class="col-xs-12">
+        <%= f.label :password, "Password"%><br>
+        <%= f.password_field :password, class: "form-control" %>
+    </div>
   </div>
-  <div>
-    <%= f.label :password, "Password"%><br>
-    <%= f.password_field :password %>
+  <div class="row" style="padding-bottom: 1em">
+    <div class="col-xs-12">
+      <%= f.label :password_confirmation, "Password Confirmation" %><br>
+      <%= f.password_field :password_confirmation, class: "form-control" %>
+    </div>
   </div>
-  <div>
-    <%= f.label :password_confirmation, "Password Confirmation" %><br>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div>
+  <div class="row" style="padding-bottom: 1em">
     <%= f.check_box :admin %> Admin
   </div>
-  <div>
-    <%= f.submit "Submit" %>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= f.submit "Submit", class: "btn btn-default" %>
+    </div>
   </div>
-<% end %>
+  <% end %>
+</div>

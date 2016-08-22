@@ -1,11 +1,15 @@
 <h1><%= @user.firstname %> <%= @user.lastname %></h1>
-<p>E-mail: <%= @user.email %></p>
+<p><%= @user.email %></p>
 <h2><%= @user.firstname %>'s Reviews:</h2>
 <p><% @user.reviews.each do |review|%>
-  <p><%= link_to review.movie.title, movie_path(review.movie) %> 
-  <p><%= review.text %></p>
-  <p>Rating: <%= review.rating_out_of_ten %>/10</p>
-  <hr>
+  <div class="row" style="padding-left: 9em; padding-right: 9em">
+    <div class="panel panel-default">
+      <div class="panel-heading"><%= link_to review.movie.title, movie_path(review.movie) %></div>
+      <p><%= review.text %></p>
+      <p>Rating: <%= review.rating_out_of_ten %>/10</p>
+    </div>
+  </div>
 <% end %>
 
 
+ 
