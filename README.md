@@ -1,24 +1,5 @@
-# README
+# Rotten Mangoes
+A Rotten Tomatoes inspired movie rating app with user abilities to sign up, submit and rate movies as well as admin abilities to manage users. Built with ruby, HTML, CSS and Bootstrap. First Ruby on Rails app.
+* index page formatting still has some fixing to do 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Check it out at: https://the-rotten-mangoes.herokuapp.com/
